@@ -31,9 +31,9 @@ copy classes from '/Users/ColeV/Skilstak/data/SQLWork/classes.csv' (format csv, 
 copy haircolors from '/Users/ColeV/Skilstak/data/SQLWork/haircolors.csv' (format csv, header True);
 copy basicinfo from '/Users/ColeV/Skilstak/data/SQLWork/basicinfo.csv' (format csv, header True);
 
-/*Insert query*/
+/*Insert queries*/
 insert into basicinfo values (
-  1021, 
+  1020, 
   'Test', 
   'SQL', 
   16, 
