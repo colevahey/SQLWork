@@ -69,22 +69,6 @@ CREATE TABLE classes (
 ALTER TABLE classes OWNER TO "ColeV";
 
 --
--- Name: films; Type: TABLE; Schema: public; Owner: ColeV
---
-
-CREATE TABLE films (
-    code character(5) NOT NULL,
-    title character varying(40) NOT NULL,
-    did integer NOT NULL,
-    date_prod date,
-    kind character varying(10),
-    len interval hour to minute
-);
-
-
-ALTER TABLE films OWNER TO "ColeV";
-
---
 -- Name: haircolors; Type: TABLE; Schema: public; Owner: ColeV
 --
 
@@ -95,32 +79,6 @@ CREATE TABLE haircolors (
 
 
 ALTER TABLE haircolors OWNER TO "ColeV";
-
---
--- Name: salaries; Type: TABLE; Schema: public; Owner: ColeV
---
-
-CREATE TABLE salaries (
-    name character varying(40) NOT NULL,
-    salary character varying(10) NOT NULL
-);
-
-
-ALTER TABLE salaries OWNER TO "ColeV";
-
---
--- Name: students; Type: TABLE; Schema: public; Owner: ColeV
---
-
-CREATE TABLE students (
-    first character varying(20) NOT NULL,
-    last character varying(50) NOT NULL,
-    username character varying(8) NOT NULL,
-    created timestamp with time zone DEFAULT now()
-);
-
-
-ALTER TABLE students OWNER TO "ColeV";
 
 --
 -- Data for Name: basicinfo; Type: TABLE DATA; Schema: public; Owner: ColeV
@@ -144,8 +102,9 @@ COPY basicinfo (uid, firstname, lastname, age, grade, email, favoriteclass, hash
 1015	Sam	Swanner	16	11	sswanner@student.csdspartans.org	20	f	"Is this a six word story?"	2	sswanner	Junior
 1016	Edward	Snortles	16	11	esnort@student.csdspartans.org	22	t	Null	4	esnort	Junior
 1017	Timmy	Turner	16	11	turnt@student.csdspartans.org	21	f	"I plagiarized this six word story."	5	turnt	Junior
-1018	Cole	Vahey	16	11	rvahey@student.csdspartans.org	23	f	Null	6	rvahey	Junior
 1019	Donovan	Keohane	16	11	keod@student.csdspartans.org	23	t	"I like turtles, not smelly garbage."	1	keod	Junior
+1021	Test	SQL	16	11	testersql@gmail.com	22	t	My six word story is interesting	2	tsql	Junior
+1018	Cole	Vahey	16	11	rcvahey01@gmail.com	23	f	Null	6	rvahey	Junior
 \.
 
 
@@ -162,14 +121,6 @@ COPY classes (cid, class) FROM stdin;
 
 
 --
--- Data for Name: films; Type: TABLE DATA; Schema: public; Owner: ColeV
---
-
-COPY films (code, title, did, date_prod, kind, len) FROM stdin;
-\.
-
-
---
 -- Data for Name: haircolors; Type: TABLE DATA; Schema: public; Owner: ColeV
 --
 
@@ -180,26 +131,6 @@ COPY haircolors (colorid, color) FROM stdin;
 4	Red
 5	Peach
 6	Green
-\.
-
-
---
--- Data for Name: salaries; Type: TABLE DATA; Schema: public; Owner: ColeV
---
-
-COPY salaries (name, salary) FROM stdin;
-Cole	1000.00
-\.
-
-
---
--- Data for Name: students; Type: TABLE DATA; Schema: public; Owner: ColeV
---
-
-COPY students (first, last, username, created) FROM stdin;
-Cole	Vahey	colev	2017-08-29 21:02:27.962125-04
-Jack	Martin	jaja	2017-08-29 22:49:05.480146-04
-Donovan	K	dfk	2017-09-05 19:31:41.335291-04
 \.
 
 
@@ -220,27 +151,11 @@ ALTER TABLE ONLY classes
 
 
 --
--- Name: films firstkey; Type: CONSTRAINT; Schema: public; Owner: ColeV
---
-
-ALTER TABLE ONLY films
-    ADD CONSTRAINT firstkey PRIMARY KEY (code);
-
-
---
 -- Name: haircolors haircolors_pkey; Type: CONSTRAINT; Schema: public; Owner: ColeV
 --
 
 ALTER TABLE ONLY haircolors
     ADD CONSTRAINT haircolors_pkey PRIMARY KEY (colorid);
-
-
---
--- Name: students students_pkey; Type: CONSTRAINT; Schema: public; Owner: ColeV
---
-
-ALTER TABLE ONLY students
-    ADD CONSTRAINT students_pkey PRIMARY KEY (username);
 
 
 --
