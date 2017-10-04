@@ -31,6 +31,7 @@ copy classes from '/Users/ColeV/Skilstak/data/SQLWork/classes.csv' (format csv, 
 copy haircolors from '/Users/ColeV/Skilstak/data/SQLWork/haircolors.csv' (format csv, header True);
 copy basicinfo from '/Users/ColeV/Skilstak/data/SQLWork/basicinfo.csv' (format csv, header True);
 
+/*Insert query*/
 insert into basicinfo values (
   1021, 
   'Test', 
@@ -46,10 +47,13 @@ insert into basicinfo values (
   'Junior'
 );
 
+/*Update query*/
 update basicinfo set email = 'rcvahey01@gmail.com' where email = 'rvahey@student.csdspartans.org'; 
 
-select * from basicinfo inner join haircolors on basicinfo.haircolor = haircolors.colorid;
+/*Join query*/
+select firstname, haircolors.color from basicinfo inner join haircolors on basicinfo.haircolor = haircolors.colorid where basicinfo.haircolor = 2;
 
-select haircolor from basicinfo;
+select firstname, haircolors.color from basicinfo inner join haircolors on basicinfo.haircolor = haircolors.colorid where basicinfo.haircolor = 3;
 
+/*Select query*/
 /*select * from basicinfo;*/
