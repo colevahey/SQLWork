@@ -27,9 +27,9 @@ create table basicinfo (
   year varchar(10) NOT NULL
 );
 
-copy classes from '/Users/ColeV/Skilstak/data/SQLWork/classes.csv' (format csv, header True);
-copy haircolors from '/Users/ColeV/Skilstak/data/SQLWork/haircolors.csv' (format csv, header True);
-copy basicinfo from '/Users/ColeV/Skilstak/data/SQLWork/basicinfo.csv' (format csv, header True);
+copy classes from '/Users/ColeV/Skilstak/SQLWork/clubs/classes.csv' (format csv, header True);
+copy haircolors from '/Users/ColeV/Skilstak/SQLWork/clubs/haircolors.csv' (format csv, header True);
+copy basicinfo from '/Users/ColeV/Skilstak/SQLWork/clubs/basicinfo.csv' (format csv, header True);
 
 /*Insert queries*/
 insert into basicinfo values (
@@ -51,7 +51,7 @@ insert into basicinfo values (
 update basicinfo set email = 'rcvahey01@gmail.com' where email = 'rvahey@student.csdspartans.org'; 
 
 /*Join query*/
-select firstname, haircolors.color from basicinfo inner join haircolors on basicinfo.haircolor = haircolors.colorid where basicinfo.haircolor = 2;
+select firstname, classes.class from basicinfo inner join classes on basicinfo.favoriteclass = classes.cid where basicinfo.favoriteclass = 21;
 
 select firstname, haircolors.color from basicinfo inner join haircolors on basicinfo.haircolor = haircolors.colorid where basicinfo.haircolor = 3;
 
