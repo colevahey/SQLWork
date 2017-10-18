@@ -1,0 +1,491 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.6.4
+-- Dumped by pg_dump version 9.6.4
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: salaries; Type: TABLE; Schema: public; Owner: ColeV
+--
+
+CREATE TABLE salaries (
+    sid integer NOT NULL,
+    rk integer NOT NULL,
+    player character varying(30) NOT NULL,
+    team character varying(40) NOT NULL,
+    salary money NOT NULL
+);
+
+
+ALTER TABLE salaries OWNER TO "ColeV";
+
+--
+-- Data for Name: salaries; Type: TABLE DATA; Schema: public; Owner: ColeV
+--
+
+COPY salaries (sid, rk, player, team, salary) FROM stdin;
+0	1	Kobe Bryant	Los Angeles Lakers	$25,000,000.00
+1	2	LeBron James	Cleveland Cavaliers	$22,970,500.00
+2	3	Carmelo Anthony	New York Knicks	$22,875,000.00
+3	4	Dwight Howard	Houston Rockets	$22,359,364.00
+4	5	Chris Bosh	Miami Heat	$22,192,730.00
+5	6	Chris Paul	LA Clippers	$21,468,695.00
+6	7	Kevin Durant	Oklahoma City Thunder	$20,158,622.00
+7	8	Derrick Rose	Chicago Bulls	$20,093,064.00
+8	9	Dwyane Wade	Miami Heat	$20,000,000.00
+9	10	LaMarcus Aldridge	San Antonio Spurs	$19,689,000.00
+10	11	Kevin Love	Cleveland Cavaliers	$19,689,000.00
+11	12	Marc Gasol	Memphis Grizzlies	$19,688,000.00
+12	13	Blake Griffin	LA Clippers	$18,907,726.00
+13	14	Paul Millsap	Atlanta Hawks	$18,671,659.00
+14	15	Paul George	Indiana Pacers	$17,120,106.00
+15	16	Russell Westbrook	Oklahoma City Thunder	$16,744,218.00
+16	17	Kyrie Irving	Cleveland Cavaliers	$16,407,501.00
+17	18	Kawhi Leonard	San Antonio Spurs	$16,407,500.00
+18	19	Enes Kanter	Oklahoma City Thunder	$16,407,500.00
+19	20	Jimmy Butler	Chicago Bulls	$16,407,500.00
+20	21	Tobias Harris	Orlando Magic	$16,000,000.00
+21	22	John Wall	Washington Wizards	$15,851,950.00
+22	23	DeMarcus Cousins	Sacramento Kings	$15,851,950.00
+23	24	James Harden	Houston Rockets	$15,756,438.00
+24	25	Roy Hibbert	Los Angeles Lakers	$15,592,217.00
+25	26	Eric Gordon	New Orleans Pelicans	$15,514,031.00
+26	27	Klay Thompson	Golden State Warriors	$15,501,000.00
+27	28	Gordon Hayward	Utah Jazz	$15,409,570.00
+28	29	Chandler Parsons	Dallas Mavericks	$15,361,500.00
+29	30	Goran Dragic	Miami Heat	$14,783,000.00
+30	31	Khris Middleton	Milwaukee Bucks	$14,700,000.00
+31	32	Draymond Green	Golden State Warriors	$14,260,870.00
+32	33	Tristan Thompson	Cleveland Cavaliers	$14,260,870.00
+33	34	Danilo Gallinari	Denver Nuggets	$14,000,000.00
+34	35	Reggie Jackson	Detroit Pistons	$13,913,044.00
+35	36	Andrew Bogut	Golden State Warriors	$13,800,000.00
+36	37	DeMarre Carroll	Toronto Raptors	$13,600,000.00
+37	38	Brandon Knight	Phoenix Suns	$13,500,000.00
+38	39	Eric Bledsoe	Phoenix Suns	$13,500,000.00
+39	40	Al Jefferson	Charlotte Hornets	$13,500,000.00
+40	41	Tony Parker	San Antonio Spurs	$13,437,500.00
+41	42	Joakim Noah	Chicago Bulls	$13,400,000.00
+42	43	Nicolas Batum	Charlotte Hornets	$13,125,306.00
+43	44	Tyson Chandler	Phoenix Suns	$13,000,000.00
+44	45	Nene Hilario	Washington Wizards	$13,000,000.00
+45	46	Ricky Rubio	Minnesota Timberwolves	$12,700,000.00
+46	47	Robin Lopez	New York Knicks	$12,650,000.00
+47	48	Rudy Gay	Sacramento Kings	$12,403,101.00
+48	49	Serge Ibaka	Oklahoma City Thunder	$12,250,000.00
+49	50	Nikola Pekovic	Minnesota Timberwolves	$12,100,000.00
+50	51	Kemba Walker	Charlotte Hornets	$12,000,000.00
+51	52	Amir Johnson	Boston Celtics	$12,000,000.00
+52	53	Andre Iguodala	Golden State Warriors	$11,710,456.00
+53	54	Stephen Curry	Golden State Warriors	$11,370,786.00
+54	55	Nikola Vucevic	Orlando Magic	$11,250,000.00
+55	56	Thaddeus Young	Brooklyn Nets	$11,235,955.00
+56	57	Kenneth Faried	Denver Nuggets	$11,235,955.00
+57	58	Marcin Gortat	Washington Wizards	$11,217,391.00
+58	59	Tyreke Evans	New Orleans Pelicans	$10,734,586.00
+59	60	Jrue Holiday	New Orleans Pelicans	$10,595,507.00
+60	61	Brendan Haywood	Portland Trail Blazers	$10,522,500.00
+61	62	Wilson Chandler	Denver Nuggets	$10,449,438.00
+62	63	Monta Ellis	Indiana Pacers	$10,300,000.00
+63	64	Luol Deng	Miami Heat	$10,151,612.00
+64	65	Gerald Wallace	Philadelphia 76ers	$10,105,855.00
+65	66	DeMar DeRozan	Toronto Raptors	$10,050,000.00
+66	67	Danny Green	San Antonio Spurs	$10,000,000.00
+67	68	Tiago Splitter	Atlanta Hawks	$9,756,250.00
+68	69	Jeff Green	Memphis Grizzlies	$9,650,000.00
+69	70	Zach Randolph	Memphis Grizzlies	$9,638,555.00
+70	71	Mike Conley	Memphis Grizzlies	$9,588,426.00
+71	72	Rajon Rondo	Sacramento Kings	$9,500,000.00
+72	73	Alec Burks	Utah Jazz	$9,463,484.00
+73	74	Omer Asik	New Orleans Pelicans	$9,213,483.00
+74	75	Lance Stephenson	Memphis Grizzlies	$9,000,000.00
+75	76	Iman Shumpert	Cleveland Cavaliers	$8,988,765.00
+76	77	Kevin Garnett	Minnesota Timberwolves	$8,500,000.00
+77	78	Taj Gibson	Chicago Bulls	$8,500,000.00
+78	79	Brandon Jennings	Orlando Magic	$8,344,497.00
+79	80	Dirk Nowitzki	Dallas Mavericks	$8,333,334.00
+80	81	Corey Brewer	Houston Rockets	$8,229,375.00
+81	82	Trevor Ariza	Houston Rockets	$8,193,030.00
+82	83	Channing Frye	Orlando Magic	$8,193,029.00
+83	84	Al-Farouq Aminu	Portland Trail Blazers	$8,042,895.00
+84	85	Markieff Morris	Washington Wizards	$8,000,000.00
+85	86	Arron Afflalo	New York Knicks	$8,000,000.00
+86	87	Jeff Teague	Atlanta Hawks	$8,000,000.00
+87	88	Ersan Ilyasova	Orlando Magic	$7,900,000.00
+88	89	Avery Bradley	Boston Celtics	$7,730,337.00
+89	90	Kosta Koufos	Sacramento Kings	$7,700,000.00
+90	91	Boris Diaw	San Antonio Spurs	$7,500,000.00
+91	92	Pau Gasol	Chicago Bulls	$7,448,760.00
+92	93	Jose Calderon	New York Knicks	$7,402,812.00
+93	94	J.J. Redick	LA Clippers	$7,085,000.00
+94	95	Anthony Davis	New Orleans Pelicans	$7,070,730.00
+95	96	Marvin Williams	Charlotte Hornets	$7,000,000.00
+96	97	Louis Williams	Los Angeles Lakers	$7,000,000.00
+97	98	Rodney Stuckey	Indiana Pacers	$7,000,000.00
+98	99	Ed Davis	Portland Trail Blazers	$6,980,802.00
+99	100	Isaiah Thomas	Boston Celtics	$6,912,869.00
+100	101	Jae Crowder	Boston Celtics	$6,796,117.00
+101	102	Greivis Vasquez	Milwaukee Bucks	$6,600,000.00
+102	103	Carl Landry	Philadelphia 76ers	$6,500,000.00
+103	104	Aron Baynes	Detroit Pistons	$6,500,000.00
+104	105	Patrick Beverley	Houston Rockets	$6,486,486.00
+105	106	Michael Kidd-Gilchrist	Charlotte Hornets	$6,331,404.00
+106	107	Jarrett Jack	Brooklyn Nets	$6,300,000.00
+107	108	Jodie Meeks	Detroit Pistons	$6,270,000.00
+108	109	Patrick Patterson	Toronto Raptors	$6,268,675.00
+109	110	Spencer Hawes	Charlotte Hornets	$6,110,034.00
+110	111	Marco Belinelli	Sacramento Kings	$6,060,606.00
+111	112	Gerald Henderson	Portland Trail Blazers	$6,000,000.00
+112	113	Andrew Wiggins	Minnesota Timberwolves	$5,758,680.00
+113	114	Kyle Korver	Atlanta Hawks	$5,746,479.00
+114	115	Karl-Anthony Towns	Minnesota Timberwolves	$5,703,600.00
+115	116	Bradley Beal	Washington Wizards	$5,694,674.00
+116	117	Courtney Lee	Charlotte Hornets	$5,675,000.00
+117	118	Jamal Crawford	LA Clippers	$5,675,000.00
+118	119	Martell Webster	Washington Wizards	$5,613,500.00
+119	120	Shaun Livingston	Golden State Warriors	$5,543,725.00
+120	121	Josh McRoberts	Miami Heat	$5,543,725.00
+121	122	Nikola Mirotic	Chicago Bulls	$5,543,725.00
+122	123	P.J. Tucker	Phoenix Suns	$5,500,000.00
+123	124	Mirza Teletovic	Phoenix Suns	$5,500,000.00
+124	125	Brandan Wright	Memphis Grizzlies	$5,464,000.00
+125	126	Deron Williams	Dallas Mavericks	$5,378,974.00
+126	127	Tim Duncan	San Antonio Spurs	$5,250,000.00
+127	128	Nick Young	Los Angeles Lakers	$5,219,169.00
+128	129	Zaza Pachulia	Dallas Mavericks	$5,200,000.00
+129	130	Victor Oladipo	Orlando Magic	$5,192,520.00
+130	131	Tony Allen	Memphis Grizzlies	$5,158,539.00
+131	132	Jabari Parker	Milwaukee Bucks	$5,152,440.00
+132	133	Dion Waiters	Oklahoma City Thunder	$5,138,430.00
+133	134	D'Angelo Russell	Los Angeles Lakers	$5,103,120.00
+134	135	Chris Kaman	Portland Trail Blazers	$5,016,000.00
+135	136	Darren Collison	Sacramento Kings	$5,013,559.00
+136	137	Chris Andersen	Memphis Grizzlies	$5,000,000.00
+137	138	C.J. Watson	Orlando Magic	$5,000,000.00
+138	139	Jonas Jerebko	Boston Celtics	$5,000,000.00
+139	140	Timofey Mozgov	Cleveland Cavaliers	$4,950,000.00
+140	141	Trevor Booker	Utah Jazz	$4,775,000.00
+141	142	Otto Porter Jr.	Washington Wizards	$4,662,960.00
+142	143	Jonas Valanciunas	Toronto Raptors	$4,660,482.00
+143	144	Joel Embiid	Philadelphia 76ers	$4,626,960.00
+144	145	Jahlil Okafor	Philadelphia 76ers	$4,582,680.00
+145	146	Kyle Singler	Oklahoma City Thunder	$4,500,000.00
+146	147	Mike Dunleavy	Chicago Bulls	$4,500,000.00
+147	148	C.J. Miles	Indiana Pacers	$4,394,225.00
+148	149	Alexis Ajinca	New Orleans Pelicans	$4,389,607.00
+149	150	Jared Dudley	Washington Wizards	$4,375,000.00
+150	151	Jameer Nelson	Denver Nuggets	$4,345,000.00
+151	152	Mario Chalmers	Memphis Grizzlies	$4,300,000.00
+152	153	Jason Smith	Orlando Magic	$4,300,000.00
+153	154	J.J. Barea	Dallas Mavericks	$4,290,000.00
+154	155	Damian Lillard	Portland Trail Blazers	$4,236,287.00
+155	156	Cody Zeller	Charlotte Hornets	$4,204,200.00
+156	157	Aaron Gordon	Orlando Magic	$4,171,680.00
+157	158	Kristaps Porzingis	New York Knicks	$4,131,720.00
+158	159	Vince Carter	Memphis Grizzlies	$4,088,019.00
+159	160	Devin Harris	Dallas Mavericks	$4,053,446.00
+160	161	Lavoy Allen	Indiana Pacers	$4,050,000.00
+161	162	Ian Mahinmi	Indiana Pacers	$4,000,000.00
+162	163	Jordan Hill	Indiana Pacers	$4,000,000.00
+163	164	Thabo Sefolosha	Atlanta Hawks	$4,000,000.00
+164	165	Raymond Felton	Dallas Mavericks	$3,950,313.00
+165	166	Nemanja Bjelica	Minnesota Timberwolves	$3,950,001.00
+166	167	Harrison Barnes	Golden State Warriors	$3,873,398.00
+167	168	Marreese Speights	Golden State Warriors	$3,815,000.00
+168	169	Alex Len	Phoenix Suns	$3,807,120.00
+169	170	Dante Exum	Utah Jazz	$3,777,720.00
+170	171	Nick Collison	Oklahoma City Thunder	$3,750,000.00
+171	172	Kyle O'Quinn	New York Knicks	$3,750,000.00
+172	173	Mario Hezonja	Orlando Magic	$3,741,480.00
+173	174	Patty Mills	San Antonio Spurs	$3,578,947.00
+174	175	Terrence Ross	Toronto Raptors	$3,553,917.00
+175	176	Matt Barnes	Memphis Grizzlies	$3,542,500.00
+176	177	Will Barton	Denver Nuggets	$3,533,333.00
+177	178	Nerlens Noel	Philadelphia 76ers	$3,457,800.00
+178	179	Marcus Smart	Boston Celtics	$3,431,040.00
+179	180	Evan Turner	Boston Celtics	$3,425,510.00
+180	181	Bojan Bogdanovic	Brooklyn Nets	$3,425,510.00
+181	182	Willie Cauley-Stein	Sacramento Kings	$3,398,280.00
+182	183	Quincy Pondexter	New Orleans Pelicans	$3,382,023.00
+183	184	Paul Pierce	LA Clippers	$3,376,000.00
+184	185	Anthony Morrow	Oklahoma City Thunder	$3,344,000.00
+185	186	Mike Scott	Atlanta Hawks	$3,333,333.00
+186	187	Drew Gooden	Washington Wizards	$3,300,000.00
+187	188	Andre Drummond	Detroit Pistons	$3,272,091.00
+188	189	K.J. McDaniels	Houston Rockets	$3,189,794.00
+189	190	Ben McLemore	Sacramento Kings	$3,156,600.00
+190	191	Randy Foye	Oklahoma City Thunder	$3,135,000.00
+191	192	Julius Randle	Los Angeles Lakers	$3,132,240.00
+192	193	Austin Rivers	LA Clippers	$3,110,796.00
+193	194	Emmanuel Mudiay	Denver Nuggets	$3,102,240.00
+194	195	Meyers Leonard	Portland Trail Blazers	$3,075,880.00
+195	196	Norris Cole	New Orleans Pelicans	$3,036,927.00
+196	197	Jeremy Lamb	Charlotte Hornets	$3,034,356.00
+197	198	Anthony Tolliver	Detroit Pistons	$3,000,000.00
+198	199	Brandon Bass	Los Angeles Lakers	$3,000,000.00
+199	200	John Henson	Milwaukee Bucks	$2,943,221.00
+200	201	Tibor Pleiss	Utah Jazz	$2,900,000.00
+201	202	Luis Scola	Toronto Raptors	$2,900,000.00
+202	203	Maurice Harkless	Portland Trail Blazers	$2,894,059.00
+203	204	Kentavious Caldwell-Pope	Detroit Pistons	$2,891,760.00
+204	205	Nik Stauskas	Philadelphia 76ers	$2,869,440.00
+205	206	Brian Roberts	Charlotte Hornets	$2,854,940.00
+206	207	Kirk Hinrich	Chicago Bulls	$2,854,940.00
+207	208	Dante Cunningham	New Orleans Pelicans	$2,850,000.00
+208	209	Stanley Johnson	Detroit Pistons	$2,841,960.00
+209	210	Furkan Aldemir	Philadelphia 76ers	$2,836,768.00
+210	211	Omri Casspi	Sacramento Kings	$2,836,186.00
+211	212	Sonny Weems	Phoenix Suns	$2,814,000.00
+212	213	Manu Ginobili	San Antonio Spurs	$2,814,000.00
+213	214	Kevin Seraphin	New York Knicks	$2,814,000.00
+214	215	Darrell Arthur	Denver Nuggets	$2,814,000.00
+215	216	Luke Ridnour	Toronto Raptors	$2,750,000.00
+216	217	Trey Burke	Utah Jazz	$2,658,240.00
+217	218	Noah Vonleh	Portland Trail Blazers	$2,637,720.00
+218	219	Tyler Zeller	Boston Celtics	$2,616,975.00
+219	220	Frank Kaminsky III	Charlotte Hornets	$2,612,520.00
+220	221	Jared Sullinger	Boston Celtics	$2,569,260.00
+221	222	C.J. McCollum	Portland Trail Blazers	$2,525,160.00
+222	223	Elfrid Payton	Orlando Magic	$2,505,720.00
+223	224	Leandro Barbosa	Golden State Warriors	$2,500,000.00
+224	225	Joel Anthony	Detroit Pistons	$2,500,000.00
+225	226	James Johnson	Toronto Raptors	$2,500,000.00
+226	227	Terrence Jones	Houston Rockets	$2,489,530.00
+227	228	Justise Winslow	Miami Heat	$2,481,720.00
+228	229	Shelvin Mack	Utah Jazz	$2,433,333.00
+229	230	Michael Carter-Williams	Milwaukee Bucks	$2,399,040.00
+230	231	Andrew Nicholson	Orlando Magic	$2,380,593.00
+231	232	Doug McDermott	Chicago Bulls	$2,380,440.00
+232	233	Myles Turner	Indiana Pacers	$2,357,760.00
+233	234	Evan Fournier	Orlando Magic	$2,288,205.00
+234	235	Donatas Motiejunas	Houston Rockets	$2,288,205.00
+235	236	Steven Adams	Oklahoma City Thunder	$2,279,040.00
+236	237	Aaron Brooks	Chicago Bulls	$2,250,000.00
+237	238	Trey Lyles	Utah Jazz	$2,239,800.00
+238	239	Ramon Sessions	Washington Wizards	$2,170,465.00
+239	240	Beno Udrih	Memphis Grizzlies	$2,170,465.00
+240	241	Steve Blake	Detroit Pistons	$2,170,465.00
+241	242	Danny Granger	Detroit Pistons	$2,170,465.00
+242	243	Kelly Olynyk	Boston Celtics	$2,165,160.00
+243	244	Zach LaVine	Minnesota Timberwolves	$2,148,360.00
+244	245	Kendall Marshall	Philadelphia 76ers	$2,144,772.00
+245	246	Gary Neal	Washington Wizards	$2,139,000.00
+246	247	Jeremy Lin	Charlotte Hornets	$2,139,000.00
+247	248	Devin Booker	Phoenix Suns	$2,127,840.00
+248	249	Miles Plumlee	Milwaukee Bucks	$2,109,294.00
+249	250	Mo Williams	Cleveland Cavaliers	$2,100,000.00
+250	251	David Lee	Dallas Mavericks	$2,085,671.00
+251	252	Shabazz Muhammad	Minnesota Timberwolves	$2,056,920.00
+252	253	Joe Ingles	Utah Jazz	$2,050,000.00
+253	254	TJ Warren	Phoenix Suns	$2,041,080.00
+254	255	Perry Jones	Boston Celtics	$2,038,206.00
+255	256	Cameron Payne	Oklahoma City Thunder	$2,021,520.00
+256	257	Festus Ezeli	Golden State Warriors	$2,008,748.00
+257	258	DeJuan Blair	Washington Wizards	$2,000,000.00
+258	259	Kent Bazemore	Atlanta Hawks	$2,000,000.00
+259	260	Giannis Antetokounmpo	Milwaukee Bucks	$1,953,960.00
+260	261	Adreian Payne	Minnesota Timberwolves	$1,938,840.00
+261	262	Kelly Oubre Jr.	Washington Wizards	$1,920,240.00
+262	263	Lucas Nogueira	Toronto Raptors	$1,842,000.00
+263	264	Jusuf Nurkic	Denver Nuggets	$1,842,000.00
+264	265	Terry Rozier	Boston Celtics	$1,824,360.00
+265	266	Dennis Schroder	Atlanta Hawks	$1,763,400.00
+266	267	James Young	Boston Celtics	$1,749,840.00
+267	268	Rashad Vaughn	Milwaukee Bucks	$1,733,040.00
+268	269	Ryan Kelly	Los Angeles Lakers	$1,724,250.00
+269	270	Joffrey Lauvergne	Denver Nuggets	$1,709,719.00
+270	271	Zoran Dragic	Boston Celtics	$1,706,225.00
+271	272	Tyler Ennis	Milwaukee Bucks	$1,662,360.00
+272	273	Sam Dekker	Houston Rockets	$1,646,400.00
+273	274	Lance Thomas	New York Knicks	$1,636,842.00
+274	275	Lou Amundson	New York Knicks	$1,635,476.00
+275	276	Sergey Karasev	Brooklyn Nets	$1,599,840.00
+276	277	Gary Harris	Denver Nuggets	$1,584,480.00
+277	278	Jerian Grant	New York Knicks	$1,572,360.00
+278	279	Tony Snell	Chicago Bulls	$1,535,880.00
+279	280	Bruno Caboclo	Toronto Raptors	$1,524,000.00
+280	281	Delon Wright	Toronto Raptors	$1,509,360.00
+281	282	Shane Larkin	Brooklyn Nets	$1,500,000.00
+282	283	Wayne Ellington	Brooklyn Nets	$1,500,000.00
+283	284	David West	San Antonio Spurs	$1,499,187.00
+284	285	Gorgui Dieng	Minnesota Timberwolves	$1,474,440.00
+285	286	Mitch McGary	Oklahoma City Thunder	$1,463,040.00
+286	287	Caron Butler	Sacramento Kings	$1,449,187.00
+287	288	Justin Anderson	Dallas Mavericks	$1,449,000.00
+288	289	Mason Plumlee	Portland Trail Blazers	$1,415,520.00
+289	290	Jordan Adams	Memphis Grizzlies	$1,404,600.00
+290	291	Bobby Portis	Chicago Bulls	$1,391,160.00
+291	292	Andrea Bargnani	Brooklyn Nets	$1,362,897.00
+292	293	Solomon Hill	Indiana Pacers	$1,358,880.00
+293	294	Rodney Hood	Utah Jazz	$1,348,440.00
+294	295	Rondae Hollis-Jefferson	Brooklyn Nets	$1,335,480.00
+295	296	Alonzo Gee	New Orleans Pelicans	$1,320,000.00
+296	297	Tim Hardaway Jr.	Atlanta Hawks	$1,304,520.00
+297	298	Nikola Jokic	Denver Nuggets	$1,300,000.00
+298	299	Shabazz Napier	Orlando Magic	$1,294,440.00
+299	300	Tyus Jones	Minnesota Timberwolves	$1,282,080.00
+300	301	Sasha Kaun	Cleveland Cavaliers	$1,276,000.00
+301	302	Brandon Rush	Golden State Warriors	$1,270,964.00
+302	303	Cartier Martin	Detroit Pistons	$1,270,964.00
+303	304	Reggie Bullock	Detroit Pistons	$1,252,440.00
+304	305	Clint Capela	Houston Rockets	$1,242,720.00
+305	306	Jarell Martin	Memphis Grizzlies	$1,230,840.00
+306	307	Andre Roberson	Oklahoma City Thunder	$1,210,800.00
+307	308	P.J. Hairston	Charlotte Hornets	$1,201,440.00
+308	309	Boban Marjanovic	San Antonio Spurs	$1,200,000.00
+309	310	Reggie Williams	Oklahoma City Thunder	$1,185,784.00
+310	311	Earl Clark	Brooklyn Nets	$1,185,784.00
+311	312	Rudy Gobert	Utah Jazz	$1,175,880.00
+312	313	Jordan Mickey	Boston Celtics	$1,170,960.00
+313	314	Toney Douglas	New Orleans Pelicans	$1,164,858.00
+314	315	Archie Goodwin	Phoenix Suns	$1,160,160.00
+315	316	CJ Wilcox	LA Clippers	$1,159,680.00
+316	317	Larry Nance Jr.	Los Angeles Lakers	$1,155,600.00
+317	318	Chris Copeland	Milwaukee Bucks	$1,150,000.00
+318	319	Damjan Rudez	Minnesota Timberwolves	$1,149,500.00
+319	320	R.J. Hunter	Boston Celtics	$1,148,640.00
+320	321	Matthew Dellavedova	Cleveland Cavaliers	$1,147,276.00
+321	322	Kyle Anderson	San Antonio Spurs	$1,142,880.00
+322	323	Josh Huestis	Oklahoma City Thunder	$1,140,240.00
+323	324	Chris McCullough	Brooklyn Nets	$1,140,240.00
+324	325	Kevon Looney	Golden State Warriors	$1,131,960.00
+325	326	Luke Babbitt	New Orleans Pelicans	$1,100,602.00
+326	327	Cole Aldrich	LA Clippers	$1,100,602.00
+327	328	Garrett Temple	Washington Wizards	$1,100,602.00
+328	329	Jeremy Evans	Dallas Mavericks	$1,100,602.00
+329	330	Glenn Robinson III	Indiana Pacers	$1,100,000.00
+330	331	Richaun Holmes	Philadelphia 76ers	$1,074,169.00
+331	332	Jon Leuer	Phoenix Suns	$1,035,000.00
+332	333	James Anderson	Sacramento Kings	$1,015,421.00
+333	334	Joey Dorsey	Barcelona FC Barcelona	$1,015,421.00
+334	335	Jordan Hamilton	New Orleans Pelicans	$1,015,421.00
+335	336	Rakeem Christmas	Indiana Pacers	$1,007,026.00
+336	337	Joe Young	Indiana Pacers	$1,007,026.00
+337	338	Robert Covington	Philadelphia 76ers	$1,000,000.00
+338	339	Montrezl Harrell	Houston Rockets	$1,000,000.00
+339	340	Walter Tavares	Atlanta Hawks	$1,000,000.00
+340	341	Kris Humphries	Washington Wizards	$1,000,000.00
+341	342	John Jenkins	Phoenix Suns	$981,348.00
+342	343	Jerel McNeal	Phoenix Suns	$981,348.00
+343	344	Hassan Whiteside	Miami Heat	$981,348.00
+344	345	Chris Johnson	Utah Jazz	$981,348.00
+345	346	Thomas Robinson	Brooklyn Nets	$981,348.00
+346	347	Robert Sacre	Los Angeles Lakers	$981,348.00
+347	348	Pablo Prigioni	LA Clippers	$947,726.00
+348	349	Willie Reed	Brooklyn Nets	$947,276.00
+349	350	John Lucas III	Minnesota Timberwolves	$947,276.00
+350	351	Damien Wilkins	Charlotte Hornets	$947,276.00
+351	352	Tyler Hansbrough	Charlotte Hornets	$947,276.00
+352	353	Jeff Withey	Utah Jazz	$947,276.00
+353	354	Grant Jerrett	Portland Trail Blazers	$947,276.00
+354	355	Troy Daniels	Charlotte Hornets	$947,276.00
+355	356	Isaiah Canaan	Philadelphia 76ers	$947,276.00
+356	357	Jason Richardson	Atlanta Hawks	$947,276.00
+357	358	Raul Neto	Utah Jazz	$900,000.00
+358	359	Jimmer Fredette	New York Knicks	$874,837.00
+359	360	Damien Inglis	Milwaukee Bucks	$855,000.00
+360	361	Tyler Johnson	Miami Heat	$845,059.00
+361	362	Terrico White	Phoenix Suns	$845,059.00
+362	363	Jack Cooley	Cleveland Cavaliers	$845,059.00
+363	364	Jerami Grant	Philadelphia 76ers	$845,059.00
+364	365	Elijah Millsap	Utah Jazz	$845,059.00
+365	366	Russ Smith	Memphis Grizzlies	$845,059.00
+366	367	James Ennis	Memphis Grizzlies	$845,059.00
+367	368	JaMychal Green	Memphis Grizzlies	$845,059.00
+368	369	Spencer Dinwiddie	Detroit Pistons	$845,059.00
+369	370	Langston Galloway	New York Knicks	$845,059.00
+370	371	Kostas Papanikolaou	Denver Nuggets	$800,321.00
+371	372	Bryce Cotton	Memphis Grizzlies	$700,902.00
+372	373	Anthony Brown	Los Angeles Lakers	$700,000.00
+373	374	Norman Powell	Toronto Raptors	$650,000.00
+374	375	Pat Connaughton	Portland Trail Blazers	$625,093.00
+375	376	Darrun Hilliard	Detroit Pistons	$600,000.00
+376	377	Jarell Eddie	Washington Wizards	$561,716.00
+377	378	Luis Montero	Portland Trail Blazers	$525,093.00
+378	379	Greg Whittington	Miami Heat	$525,093.00
+379	380	Josh Richardson	Miami Heat	$525,093.00
+380	381	Deonte Burton	Phoenix Suns	$525,093.00
+381	382	Kyle Casey	Phoenix Suns	$525,093.00
+382	383	Aaron Harrison	Charlotte Hornets	$525,093.00
+383	384	Christian Wood	Philadelphia 76ers	$525,093.00
+384	385	Treveon Graham	Charlotte Hornets	$525,093.00
+385	386	Jarrid Famous	Memphis Grizzlies	$525,093.00
+386	387	Shannon Scott	Toronto Raptors	$525,093.00
+387	388	Ronald Roberts Jr.	Toronto Raptors	$525,093.00
+388	389	Cristiano Felicio	Chicago Bulls	$525,093.00
+389	390	Terran Petteway	Atlanta Hawks	$525,093.00
+390	391	Michael Beasley	Houston Rockets	$306,527.00
+391	392	Steve Novak	Oklahoma City Thunder	$295,327.00
+392	393	Anderson Varejao	Golden State Warriors	$289,755.00
+393	394	JJ Hickson	Washington Wizards	$273,038.00
+394	395	Joe Johnson	Brooklyn Nets	$261,894.00
+395	396	JaKarr Sampson	Philadelphia 76ers	$258,489.00
+396	397	Andre Miller	San Antonio Spurs	$250,750.00
+397	398	Jason Thompson	Toronto Raptors	$245,177.00
+398	399	Ryan Hollins	Memphis Grizzlies	$239,605.00
+399	400	Nazr Mohammed	Oklahoma City Thunder	$222,888.00
+400	401	Ty Lawson	Indiana Pacers	$211,744.00
+401	402	Chase Budinger	Phoenix Suns	$206,192.00
+402	403	Kevin Martin	San Antonio Spurs	$200,600.00
+403	404	Marcus Thornton	Washington Wizards	$200,600.00
+404	405	Andrew Goudelock	Houston Rockets	$200,600.00
+405	406	Jorge Gutierrez	Charlotte Hornets	$189,455.00
+406	407	Bryce Dejean-Jones	New Orleans Pelicans	$169,883.00
+407	408	Tony Wroten	Philadelphia 76ers	$167,406.00
+408	409	Sean Kilpatrick	Brooklyn Nets	$134,215.00
+409	410	Jeff Ayres	LA Clippers	$111,444.00
+410	411	Lorenzo Brown	Phoenix Suns	$111,444.00
+411	412	Jordan McRae	Phoenix Suns	$111,196.00
+412	413	Erick Green	Utah Jazz	$99,418.00
+413	414	Alan Williams	Phoenix Suns	$83,397.00
+414	415	Keith Appling	Orlando Magic	$61,776.00
+415	416	Orlando Johnson	Phoenix Suns	$55,722.00
+416	417	Phil Pressey	Phoenix Suns	$55,722.00
+417	418	Elliot Williams	Memphis Grizzlies	$55,722.00
+418	419	Cory Jefferson	Phoenix Suns	$49,709.00
+419	420	Thanasis Antetokounmpo	New York Knicks	$30,888.00
+\.
+
+
+--
+-- Name: salaries salaries_pkey; Type: CONSTRAINT; Schema: public; Owner: ColeV
+--
+
+ALTER TABLE ONLY salaries
+    ADD CONSTRAINT salaries_pkey PRIMARY KEY (sid);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
