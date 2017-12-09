@@ -1,6 +1,8 @@
 let pg = require('pg')
 let graphql = require('graphql');
 
+let teamname = "Chicago Bulls"
+
 console.log("Your team is the " + teamname)
 
 var test = function() {
@@ -15,3 +17,5 @@ var test = function() {
     console.log('Chicago Bulls:', res.rows)
   })
 }
+
+test()
