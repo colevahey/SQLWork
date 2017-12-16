@@ -1,3 +1,4 @@
+UID,FirstName,LastName,Age,Grade,Email,Favorite Class,HasHomework,SixWordStory,Hair Color,SchoologyUsername,Year
 1000,Cole,Vahey,16,11,rvahey@student.csdspartans.org,20,TRUE,"""This is a six word story""",1,rvahey,Junior
 1001,Boden,Solomonson,16,11,bsolomonson@student.csdspartans.org,21,TRUE,"""What do we have for homework?""",2,bsolomonson,Junior
 1002,Jack,Breen,16,11,jbreen@student.csdspartans.org,20,FALSE,Null,1,jbreen,Junior
