@@ -27,9 +27,9 @@ create table basicinfo (
   year varchar(10) NOT NULL
 );
 
-copy classes from '/Users/ColeV/Skilstak/SQLWork/clubs/classes.csv' (format csv, header True);
-copy haircolors from '/Users/ColeV/Skilstak/SQLWork/clubs/haircolors.csv' (format csv, header True);
-copy basicinfo from '/Users/ColeV/Skilstak/SQLWork/clubs/basicinfo.csv' (format csv, header True);
+copy haircolors from '/Users/colev/homework/Skilstak/data/SQLWork/clubs/classes.csv' (format csv, header True);
+copy classes from '/Users/colev/homework/Skilstak/data/SQLWork/clubs/classes.csv' (format csv, header True);
+copy basicinfo from '/Users/colev/homework/Skilstak/data/SQLWork/clubs/classes.csv' (format csv, header True);
 
 /*Insert queries*/
 insert into basicinfo values (
