@@ -14,7 +14,14 @@ delete from tournamentscores where year = 2045;
 -- score for future queries
 update tournamentscores set (seed1,score1,team1,team2,score2,seed2) = (seed2,score2,team2,team1,score1,seed1) where (score2 > score1); 
 
--- Join query
+-- *****************- SYNTAX FOR A JOIN -*********************
+-- select (all columns) from (first table) inner join (second
+  -- table) on (conditional)
+
+-- Simple join of teams with their mascots
+select team1, mascot from tournamentscores inner join mascots on team1 = team;
+
+-- Larger join query
 -- Joins the winner of the national championship game 
 -- with its mascot from a different table. Limit the 
 -- join to the first 20 games of the tournamentscores 

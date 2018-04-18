@@ -1,22 +1,32 @@
 conn = new Mongo()
 db = conn.getDB("test")
 
-selectall = db.basicinfo.find();
-while ( selectall.hasNext() ) {
+/*selectall = db.marchmadness.find();
+while ( selectall.hasNext()) {
    printjson( selectall.next() );
-}
+}*/
 
-/*selectsome = db.basicinfo.find({"FirstName" : "Sam"});
+// Insert one game into the collection marchmadness
+insert = db.marchmadness.insert([
+  {
+    "Year":2035,
+    "Round":6,
+    "Region Number":1,
+    "Region Name":"Championship",
+    "SeedL":1,
+    "ScoreL":83,
+    "TeamL":"Duke",
+    "TeamR":"Loyola-Chicago",
+    "ScoreR":75,
+    "SeedR":11
+  }
+])
+
+// Select that game from the collection
+selectsome = db.marchmadness.find({"Year" : 2035});
 while ( selectsome.hasNext() ) {
    printjson( selectsome.next() );
 }
 
-//removeall = db.basicinfo.remove({});
-
-insert = db.basicinfo.insert({"test":"passed"})
-insertafew = db.basicinfo.insert([
-  {"newinsert":"here"},
-  {_id:20,"OnewithID":"yep"}
-])
-
-join = db.basicinfo.aggregate([{$lookup:{from:"haircolors", localField: "ColorID", foreignField: "Hair Color", as: "colormatches"}}])*/
+// Delete all games that happened in the year 2035
+db.marchmadness.deleteMany({"Year":2035});
